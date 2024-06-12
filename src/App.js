@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js
+import React, { useState } from 'react';
+import Formulario from './componentes/Formulario';
+import DatosIngresados from './componentes/DatosIngresados';
+import { initialState } from './initialState';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+    const [formData, setFormData] = useState(initialState);
+
+    const handleFormDataChange = (newFormData) => {
+        setFormData(newFormData);
+    };
+
+    return (
+        <div className="App" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '50px' }}>
+            <Formulario onFormDataChange={handleFormDataChange} />
+            <DatosIngresados formData={formData} />
+        </div>
+    );
+};
 
 export default App;
